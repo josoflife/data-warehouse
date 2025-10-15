@@ -1,0 +1,13 @@
+This file is used to set up the schemas in the database, choose the local database, and always tick the trust service certificate to connect to the sql
+
+use master;
+ Create Database  Warehouse;
+
+  USE Warehouse;
+
+ GO
+CREATE SCHEMA bronze;
+ GO
+ CREATE SCHEMA silver;
+ GO
+  CREATE SCHEMA gold;
