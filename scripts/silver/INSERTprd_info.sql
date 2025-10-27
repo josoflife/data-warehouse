@@ -1,3 +1,6 @@
+
+TRUNCATE TABLE silver.crm_prd_info;
+
 INSERT INTO silver.crm_prd_info(
 prd_id,
 cat_id,
@@ -23,6 +26,5 @@ CASE UPPER(TRIM(prd_line))
      ELSE 'N/A'
 END AS prd_line,
 CAST(prd_start AS DATE) AS prd_start,
-CAST(LEAD(prd_start) OVER (PARTITION BY prd_key ORDER BY prd_start) AS DATE) AS prd_end_dt
-
+DATEADD(DAY, -1, LEAD(prd_start) OVER (PARTITION BY prd_key ORDER BY prd_start)) AS prd_end_dt
 FROM bronze.crm_prd_info
